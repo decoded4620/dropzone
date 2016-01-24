@@ -8,7 +8,7 @@ if($installLocation -eq $null){
 	Write-Error "Could not locate GTA Installation, Please Install before running this script."
 	exit
 }
-
+# Hey Nathan.
 # Test for Drop Zone, create INE
 if(Test-Path "$($installLocation)/dropZone"){
 	$trackedModItems = (Get-ChildItem "$($installLocation)/dropZone")
