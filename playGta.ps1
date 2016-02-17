@@ -17,9 +17,9 @@ else{
 
 
 
+
 # Dot-Source the Functions
 . "includes\\functions.ps1"
-
 
 
 
@@ -50,6 +50,7 @@ $socialClubInstallLocation      = "C:\Program Files (x86)\Rockstar Games\Social 
 #----------------------------------------------------------------------------
 # Location of Drop Zone
 $dropZonePath                   = "$($installLocation)dropZone\".Replace('\','/');
+
 $dzLen                          = $dropZonePath.Length;
 #----------------------------------------------------------------------------
 # DMZ - demilitiarized zone for original files that are being replaced by modded files.
@@ -87,7 +88,6 @@ $hiddenFiles = "_migratelog.txt", "_vanillaFiles.manifest"
 ########################################################################################################################
 # END DECLARATIONS
 ########################################################################################################################
-
 # Test for Drop Zone, create Tracked Mod Items by scanning all files in the dropZone directory
 # which should be in the installation location of the game in a folder titled '.dropZone' or 'dropZone'
 if(-not(Test-Path "$($dropZonePath)")){
@@ -116,7 +116,11 @@ Get-ChildItem -recurse "$($installLocation)" | % {
 if(-not(Test-Path "$($dropZonePath)_vanillaFiles.manifest")){
     
     # write keys to a manifest
-    $vanillaFilesTable.Keys | Out-File "$($dropZonePath)_vanillaFiles.manifest" 
+    $vanillaFilesTable.Keys | Out-File "$($dropZonePath)_vanillaFiles.manifest"
+    
+    #alert here to restart after placing mods.
+    $result = $wshell.Popup("Get Excited...Initial setup is now complete! You can move your mod files to $($dropZonePath) and run DropZone one more time!!",0,"Done",0x1)
+    exit;   
 }
 else{
     $arr = Get-Content "$($dropZonePath)_vanillaFiles.manifest"
@@ -139,8 +143,6 @@ else{
             throw " ERROR: $($_), Vanilla Folder is NOT Vanilla. Delete the _vanillaFiles.manifest from dropZone, and update your GTA V. Once comlete, re-run this tool to regenerate the file table" 
         } 
     }
-    
-    
 }
 
 
@@ -168,7 +170,6 @@ $findOverwritesScriptBlock = {
 # will be process by the above block, and any files matching a file in the current vanilla
 # directory will be considered tracked mod items
 $trackedModItems | % $findOverwritesScriptBlock
-
 
 
 #----------------------------------------------------------------------------
