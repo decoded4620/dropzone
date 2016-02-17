@@ -51,4 +51,7 @@ that the game is in the 'Vanilla' state prior to making any migrations from the 
 After the game process has shutdown, DropZone will clean up your Game Directory, and restore all the mods back to dropZone, and restore the vanilla files that were replaced by mods back to the root of the installation of GTA V. Thus the game should appear as if no changes were ever made, and your mods will be safely contained in drop zone.
 
 # Benefits
-You can now play your Modded version of GTA V, and roll back to playing the Vanilla version (Online, with friends, etc) simply by clicking an icon.
+You can run this tool from any location and it will recognize your Game Directory and create the necessary folders inside it. 
+You can add new/remove modded files anytime and dropzone will know what to do with them. 
+You can now play your Modded version of GTA V, and dropZone will always leave your game in a vanilla state so you don't get tagged, it force offline play.
+dropZone can be edited to work for other games too!
