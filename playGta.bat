@@ -1,1 +1,0 @@
-powershell -executionpolicy remotesigned -file "%~dp0\playGta.ps1"
